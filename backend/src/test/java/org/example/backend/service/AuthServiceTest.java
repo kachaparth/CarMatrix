@@ -1,6 +1,7 @@
 package org.example.backend.service;
 
 import org.example.backend.dto.auth.RegisterRequest;
+import org.example.backend.dto.auth.RegisterResponse;
 import org.example.backend.entity.User;
 import org.example.backend.enums.Role;
 import org.example.backend.repository.UserRepository;
@@ -57,7 +58,7 @@ class AuthServiceTest {
 
         when(userRepository.save(any(User.class))).thenReturn(savedUser);
 
-        User result = authService.register(request);
+        RegisterResponse result = authService.register(request);
 
         assertThat(result).isNotNull();
         assertThat(result.getEmail()).isEqualTo(request.getEmail());
