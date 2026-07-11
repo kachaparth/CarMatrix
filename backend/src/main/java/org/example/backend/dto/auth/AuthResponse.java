@@ -10,6 +10,6 @@ import lombok.Getter;
 public class AuthResponse {
 
     private String token;
-
     private String message;
+    private String email;
 }
