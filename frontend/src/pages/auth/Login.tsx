@@ -4,11 +4,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Input, Button, Card } from 'antd';
 import { motion } from 'framer-motion';
-import { Car, Lock, Mail } from 'lucide-react';
+import { Car, Lock, Mail, Sun, Moon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { authService } from '../../services/auth.service';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -25,6 +26,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   const onSubmit = async (data: LoginForm) => {
     try {
@@ -41,7 +43,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-canvas p-4 transition-colors duration-300">
+    <div className="min-h-screen flex items-center justify-center bg-canvas p-4 transition-colors duration-300 relative">
+      <div className="absolute top-6 right-6">
+        <Button 
+          type="text" 
+          onClick={toggleTheme} 
+          icon={theme === 'dark' ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-secondary" />} 
+        />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
