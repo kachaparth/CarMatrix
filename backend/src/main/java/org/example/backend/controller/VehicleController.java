@@ -1,5 +1,7 @@
 package org.example.backend.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.backend.dto.vehicle.CreateVehicleRequest;
@@ -9,11 +11,16 @@ import org.example.backend.enums.VehicleCategory;
 import org.example.backend.service.VehicleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Tag(
+        name = "Vehicle",
+        description = "Vehicle Management APIs"
+)
 @RestController
 @RequestMapping("/api/vehicles")
 @RequiredArgsConstructor
@@ -22,6 +29,8 @@ public class VehicleController {
     private final VehicleService vehicleService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Create Vehicle")
     public ResponseEntity<VehicleResponse> addVehicle(
             @Valid @RequestBody CreateVehicleRequest request) {
 
@@ -48,6 +57,7 @@ public class VehicleController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<VehicleResponse> updateVehicle(
             @PathVariable Long id,
             @Valid @RequestBody UpdateVehicleRequest request) {
@@ -58,6 +68,7 @@ public class VehicleController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteVehicle(
             @PathVariable Long id) {
 

@@ -1,8 +1,10 @@
 package org.example.backend.service;
 
+import org.example.backend.dto.inventory.InventoryResponse;
 import org.example.backend.dto.inventory.PurchaseRequest;
 import org.example.backend.dto.inventory.RestockRequest;
 import org.example.backend.entity.Inventory;
+import org.example.backend.entity.Vehicle;
 import org.example.backend.exception.ApiException;
 import org.example.backend.repository.InventoryRepository;
 import org.junit.jupiter.api.Test;
@@ -29,7 +31,12 @@ class InventoryServiceTest {
     @Test
     void shouldRestockVehicleSuccessfully() {
 
+        Vehicle vehicle = Vehicle.builder()
+                .id(1L)
+                .build();
+
         Inventory inventory = Inventory.builder()
+                .vehicle(vehicle)
                 .quantity(10)
                 .minimumStock(5)
                 .build();
@@ -42,11 +49,13 @@ class InventoryServiceTest {
                 .thenReturn(Optional.of(inventory));
 
         when(inventoryRepository.save(any(Inventory.class)))
-                .thenReturn(inventory);
+                .thenAnswer(invocation -> invocation.getArgument(0));
 
-        Inventory result = inventoryService.restockVehicle(1L, request);
+        InventoryResponse response =
+                inventoryService.restockVehicle(1L, request);
 
-        assertEquals(15, result.getQuantity());
+        assertEquals(15, response.getQuantity());
+        assertEquals(1L, response.getVehicleId());
 
         verify(inventoryRepository).save(any(Inventory.class));
     }
@@ -54,7 +63,12 @@ class InventoryServiceTest {
     @Test
     void shouldPurchaseVehicleSuccessfully() {
 
+        Vehicle vehicle = Vehicle.builder()
+                .id(1L)
+                .build();
+
         Inventory inventory = Inventory.builder()
+                .vehicle(vehicle)
                 .quantity(10)
                 .minimumStock(5)
                 .build();
@@ -67,11 +81,13 @@ class InventoryServiceTest {
                 .thenReturn(Optional.of(inventory));
 
         when(inventoryRepository.save(any(Inventory.class)))
-                .thenReturn(inventory);
+                .thenAnswer(invocation -> invocation.getArgument(0));
 
-        Inventory result = inventoryService.purchaseVehicle(1L, request);
+        InventoryResponse response =
+                inventoryService.purchaseVehicle(1L, request);
 
-        assertEquals(6, result.getQuantity());
+        assertEquals(6, response.getQuantity());
+        assertEquals(1L, response.getVehicleId());
 
         verify(inventoryRepository).save(any(Inventory.class));
     }
@@ -79,7 +95,12 @@ class InventoryServiceTest {
     @Test
     void shouldThrowExceptionWhenStockIsInsufficient() {
 
+        Vehicle vehicle = Vehicle.builder()
+                .id(1L)
+                .build();
+
         Inventory inventory = Inventory.builder()
+                .vehicle(vehicle)
                 .quantity(2)
                 .minimumStock(5)
                 .build();
