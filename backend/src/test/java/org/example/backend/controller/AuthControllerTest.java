@@ -1,13 +1,14 @@
 package org.example.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.backend.config.SecurityConfig;
 import org.example.backend.dto.auth.LoginRequest;
 import org.example.backend.dto.auth.LoginResponse;
 import org.example.backend.dto.auth.RegisterRequest;
 import org.example.backend.dto.auth.RegisterResponse;
 import org.example.backend.exception.ApiException;
 import org.example.backend.exception.GlobalExceptionHandler;
+import org.example.backend.security.CustomUserDetailsService;
+import org.example.backend.security.JwtAuthenticationFilter;
 import org.example.backend.service.AuthService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,12 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(AuthController.class)
-@Import({GlobalExceptionHandler.class, SecurityConfig.class})
-@AutoConfigureMockMvc(addFilters = false)
+@Import(GlobalExceptionHandler.class) // Removed SecurityConfig.class to prevent Context Load failures
+@AutoConfigureMockMvc(addFilters = false) // Disables security filters for this test slice
 class AuthControllerTest {
 
     @Autowired
@@ -39,9 +39,14 @@ class AuthControllerTest {
     @MockBean
     private AuthService authService;
 
+    @MockBean
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @MockBean
+    private CustomUserDetailsService customUserDetailsService;
+
     @Test
     void shouldRegisterUserSuccessfully() throws Exception {
-
         RegisterRequest request = new RegisterRequest();
         request.setFirstName("Parth");
         request.setLastName("Kacha");
@@ -70,7 +75,6 @@ class AuthControllerTest {
 
     @Test
     void shouldReturnConflictWhenEmailAlreadyExists() throws Exception {
-
         RegisterRequest request = new RegisterRequest();
         request.setFirstName("Parth");
         request.setLastName("Kacha");
@@ -93,7 +97,6 @@ class AuthControllerTest {
 
     @Test
     void shouldLoginSuccessfully() throws Exception {
-
         LoginRequest request = new LoginRequest();
         request.setEmail("parth@gmail.com");
         request.setPassword("password123");
@@ -117,7 +120,6 @@ class AuthControllerTest {
 
     @Test
     void shouldReturnUnauthorizedForInvalidCredentials() throws Exception {
-
         LoginRequest request = new LoginRequest();
         request.setEmail("parth@gmail.com");
         request.setPassword("wrong-password");

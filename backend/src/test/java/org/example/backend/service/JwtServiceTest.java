@@ -1,9 +1,11 @@
-package org.example.backend.security;
-
+package org.example.backend.service;
+import org.example.backend.security.JwtService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.example.backend.entity.User;
 import org.example.backend.enums.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -61,7 +63,14 @@ class JwtServiceTest {
     void shouldValidateToken() {
 
         String token = jwtService.generateToken(user);
+        UserDetails userDetails =
+                org.springframework.security.core.userdetails.User
+                        .builder()
+                        .username("parth@gmail.com")
+                        .password("password")
+                        .roles("CUSTOMER")
+                        .build();
 
-        assertTrue(jwtService.isTokenValid(token, user));
+        assertTrue(jwtService.isTokenValid(token, userDetails));
     }
 }
