@@ -7,6 +7,11 @@
 <h4 align="center">A Comprehensive, Agent-Assisted Dealership & Fleet Management Platform</h4>
 
 <p align="center">
+  <strong>🌐 Live Website:</strong> <a href="https://car-matrix.vercel.app">car-matrix.vercel.app</a><br>
+  <strong>⚙️ Backend API:</strong> <a href="https://carmatrix.onrender.com">carmatrix.onrender.com</a>
+</p>
+
+<p align="center">
   <a href="#about-the-platform">About</a> •
   <a href="#core-features">Features</a> •
   <a href="#architectural-overview">Architecture</a> •
