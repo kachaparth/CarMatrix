@@ -9,11 +9,12 @@ import Dashboard from './pages/dashboard/Dashboard';
 import VehicleListing from './pages/inventory/VehicleListing';
 import VehicleDetails from './pages/inventory/VehicleDetails';
 
-const AdminVehicleList = () => <div className="p-8">Admin Vehicle Management</div>;
-const AddVehicle = () => <div className="p-8">Add Vehicle Page</div>;
-const EditVehicle = () => <div className="p-8">Edit Vehicle Page</div>;
-const NotFound = () => <div className="p-8">404 - Not Found</div>;
-const Unauthorized = () => <div className="p-8">401 - Unauthorized</div>;
+import AdminVehicleList from './pages/admin/AdminVehicleList';
+import AddVehicle from './pages/admin/AddVehicle';
+import EditVehicle from './pages/admin/EditVehicle';
+
+const NotFound = () => <div className="p-8 text-center mt-20"><h1 className="text-4xl font-bold">404</h1><p>Page Not Found</p></div>;
+const Unauthorized = () => <div className="p-8 text-center mt-20"><h1 className="text-4xl font-bold text-red-500">401</h1><p>Unauthorized Access</p></div>;
 
 // A simple protected route wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
