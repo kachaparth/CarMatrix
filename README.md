@@ -252,10 +252,10 @@ npm run dev
 ![Inventory](Screenshots/inventory.png)
 
 ### Admin Dashboard & Management
-![Admin Dashboard](Screenshots/admin_dashboard.png)
-![Admin Management](Screenshots/admin_management.png)
+![Admin Dashboard](Screenshots/Dashboard.png)
+![Admin Management](Screenshots/AdminManagement.png)
 
-*(Additional screenshots located in the `/screenshots` directory)*
+*(Additional screenshots located in the `/Screenshots` directory)*
 
 ---
 
