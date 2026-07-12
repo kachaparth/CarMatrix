@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-// Placeholder components (these will be built out in later phases)
-const Login = () => <div className="p-8">Login Page</div>;
-const Register = () => <div className="p-8">Register Page</div>;
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 const Dashboard = () => <div className="p-8">Dashboard Page</div>;
 const VehicleListing = () => <div className="p-8">Vehicle Listing Page</div>;
 const VehicleDetails = () => <div className="p-8">Vehicle Details Page</div>;
