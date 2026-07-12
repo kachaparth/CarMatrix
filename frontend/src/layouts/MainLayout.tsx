@@ -75,7 +75,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
         collapsible 
         collapsed={collapsed}
         theme={theme === 'dark' ? 'dark' : 'light'}
-        className="shadow-none border-r border-divider hidden md:block bg-canvas"
+        className="shadow-none border-r border-divider hidden md:block bg-surface"
         width={260}
       >
         <div className="h-16 flex items-center justify-center border-b border-divider">
@@ -96,7 +96,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
       </Sider>
 
       <Layout className="bg-transparent">
-        <Header className="bg-surface/80 backdrop-blur-md border-b border-divider px-4 flex items-center justify-between sticky top-0 z-10 shadow-none h-16 transition-colors duration-300">
+        <Header className="bg-canvas border-b border-divider px-4 flex items-center justify-between sticky top-0 z-10 shadow-none h-16 transition-colors duration-300">
           <div className="flex items-center">
             <Button
               type="text"

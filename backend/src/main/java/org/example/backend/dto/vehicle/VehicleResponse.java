@@ -28,6 +28,8 @@ public class VehicleResponse {
     private BigDecimal price;
 
     private FuelType fuelType;
+    
+    private String imageUrl;
 
     private TransmissionType transmissionType;
 

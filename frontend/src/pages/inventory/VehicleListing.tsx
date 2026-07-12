@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Card, Input, Select, Button, Row, Col, Typography, Tag, Empty, Skeleton } from 'antd';
-import { Search, Filter, ShoppingCart, Info, Car } from 'lucide-react';
+import { Card, Input, Select, Button, Row, Col, Typography, Empty, Skeleton } from 'antd';
+import { Search, Filter, Car } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { vehicleService } from '../../services/vehicle.service';
 import { Link } from 'react-router-dom';
@@ -79,54 +79,55 @@ const VehicleListing = () => {
                 transition={{ delay: index * 0.05 }}
               >
                 <Card 
-                  className="rounded-2xl overflow-hidden shadow-none hover:shadow-none transition-all duration-300 border-divider bg-surface group cursor-pointer h-full flex flex-col"
-                  cover={
-                    <div className="h-48 bg-slate-100 bg-surface flex items-center justify-center relative overflow-hidden">
-                       <Car className="text-slate-300 dark:text-primary w-20 h-20 group-hover:scale-110 transition-transform duration-500" />
-                       <div className="absolute top-3 right-3">
-                         <Tag color="cyan" className="m-0 rounded-full px-3 font-semibold shadow-none border border-divider bg-surface/90 bg-surface/90 backdrop-blur-sm text-indigo-700 dark:text-indigo-400">
-                           {vehicle.category}
-                         </Tag>
-                       </div>
-                    </div>
-                  }
-                  bodyStyle={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}
+                  className="rounded-xl overflow-hidden shadow-none hover:shadow-2xl transition-all duration-500 border border-divider bg-surface group cursor-pointer h-full flex flex-col p-0"
+                  bodyStyle={{ padding: 0, flex: 1, display: 'flex', flexDirection: 'column' }}
                 >
-                  <div className="flex-1">
-                    <div className="flex justify-between items-start mb-2">
-                    <Title level={4} className="mb-0 truncate pr-2 text-primary">{vehicle.make} {vehicle.model}</Title>
-                      <Text className="font-bold text-lg text-emerald-600">₹{vehicle.price.toLocaleString('en-IN')}</Text>
-                    </div>
-                    <Text type="secondary" className="block mb-4 text-sm line-clamp-2 h-10 dark:text-secondary">
-                      {vehicle.description || 'No description available for this model.'}
-                    </Text>
-                    
-                    <div className="flex gap-2 mb-4">
-                      <Tag color={vehicle.availableStock > 0 ? 'success' : 'error'} className="rounded-full m-0">
-                        {vehicle.availableStock > 0 ? `${vehicle.availableStock} in stock` : 'Out of Stock'}
-                      </Tag>
-                      <Tag className="rounded-full bg-canvas/50 text-secondary m-0 border-divider">
-                        {vehicle.fuelType}
-                      </Tag>
+                  <div className="h-64 bg-canvas flex items-center justify-center relative overflow-hidden">
+                    {vehicle.imageUrl ? (
+                      <img src={vehicle.imageUrl} alt={`${vehicle.make} ${vehicle.model}`} className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out" />
+                    ) : (
+                      <Car className="text-secondary w-16 h-16 opacity-30 group-hover:scale-110 transition-transform duration-700" />
+                    )}
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-surface/90 backdrop-blur-md text-primary rounded-sm border border-divider">
+                        {vehicle.category}
+                      </span>
                     </div>
                   </div>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="mb-4">
+                      <h3 className="text-2xl font-light text-primary tracking-tight mb-1 truncate">{vehicle.make} {vehicle.model}</h3>
+                      <p className="text-lg font-medium text-brand tracking-wide">₹{vehicle.price.toLocaleString('en-IN')}</p>
+                    </div>
+                    <Text type="secondary" className="block mb-6 text-sm line-clamp-2 leading-relaxed font-light">
+                      {vehicle.description || 'Experience the pinnacle of automotive engineering.'}
+                    </Text>
+                    
+                    <div className="flex items-center gap-3 text-xs tracking-widest uppercase text-secondary mb-6 mt-auto">
+                      <span className="flex items-center gap-1.5">
+                        <span className={`w-1.5 h-1.5 rounded-full ${vehicle.availableStock > 0 ? 'bg-brand' : 'bg-red-500'}`}></span>
+                        {vehicle.availableStock > 0 ? 'Available' : 'Out of Stock'}
+                      </span>
+                      <span className="w-1 h-1 bg-divider rounded-full"></span>
+                      <span>{vehicle.fuelType}</span>
+                    </div>
 
-                  <div className="flex gap-2 mt-auto pt-4 border-t border-slate-50 border-divider/50">
-                    <Link to={`/inventory/${vehicle.id}`} className="flex-1">
-                      <Button className="w-full text-secondary bg-surface dark:bg-slate-700 border-divider dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600" icon={<Info size={16} />}>
-                        Details
-                      </Button>
-                    </Link>
-                    <Link to={`/inventory/${vehicle.id}`} className="flex-1">
-                      <Button 
-                        type="primary" 
-                        className="w-full bg-brand hover:opacity-90 text-white shadow-none shadow-indigo-200 dark:shadow-indigo-900" 
-                        icon={<ShoppingCart size={16} />}
-                        disabled={vehicle.availableStock <= 0}
-                      >
-                        Buy
-                      </Button>
-                    </Link>
+                    <div className="flex gap-3 pt-4 border-t border-divider">
+                      <Link to={`/inventory/${vehicle.id}`} className="flex-1">
+                        <Button className="w-full h-12 text-sm font-medium tracking-wide bg-transparent border-divider text-primary hover:border-brand hover:text-brand transition-colors">
+                          View Details
+                        </Button>
+                      </Link>
+                      <Link to={`/inventory/${vehicle.id}`} className="flex-1">
+                        <Button 
+                          type="primary" 
+                          className="w-full h-12 text-sm font-medium tracking-wide bg-brand text-white border-none shadow-none hover:opacity-90" 
+                          disabled={vehicle.availableStock <= 0}
+                        >
+                          Reserve
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </Card>
               </motion.div>

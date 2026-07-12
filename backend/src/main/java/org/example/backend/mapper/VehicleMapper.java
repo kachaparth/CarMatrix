@@ -21,6 +21,7 @@ public class VehicleMapper {
                 .fuelType(request.getFuelType())
                 .transmissionType(request.getTransmissionType())
                 .color(request.getColor())
+                .imageUrl(request.getImageUrl())
                 .description(request.getDescription())
                 .build();
     }
@@ -34,6 +35,7 @@ public class VehicleMapper {
         vehicle.setManufacturingYear(request.getManufacturingYear());
         vehicle.setPrice(request.getPrice());
         vehicle.setFuelType(request.getFuelType());
+        vehicle.setImageUrl(request.getImageUrl());
         vehicle.setTransmissionType(request.getTransmissionType());
         vehicle.setColor(request.getColor());
         vehicle.setDescription(request.getDescription());
@@ -54,6 +56,7 @@ public class VehicleMapper {
                 .transmissionType(vehicle.getTransmissionType())
                 .color(vehicle.getColor())
                 .description(vehicle.getDescription())
+                .imageUrl(vehicle.getImageUrl())
                 .availableStock(inventory.getQuantity())
                 .build();
     }

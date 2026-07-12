@@ -32,6 +32,8 @@ public class UpdateVehicleRequest {
     @DecimalMin(value = "0.0", inclusive = false)
     private BigDecimal price;
 
+    private String imageUrl;
+
     @NotNull
     private FuelType fuelType;
 

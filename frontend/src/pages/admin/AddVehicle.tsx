@@ -22,7 +22,8 @@ export const vehicleSchema = z.object({
   fuelType: z.enum(['PETROL', 'DIESEL', 'ELECTRIC', 'HYBRID', 'CNG']),
   transmissionType: z.enum(['MANUAL', 'AUTOMATIC']),
   color: z.string().min(1, 'Color is required'),
-  description: z.string().optional()
+  description: z.string().min(10, 'Please provide a detailed description'),
+  imageUrl: z.string().url('Must be a valid URL').optional().or(z.literal(''))
 });
 
 export type VehicleFormValues = z.infer<typeof vehicleSchema>;
@@ -182,14 +183,27 @@ const AddVehicle = () => {
               </Col>
 
               <Col xs={24}>
-                <label className="block text-sm font-medium text-primary mb-1">Description</label>
+                <label className="block text-sm font-medium text-primary mb-1">Image URL (Optional)</label>
+                <Controller
+                  name="imageUrl"
+                  control={control}
+                  render={({ field }) => (
+                    <Input {...field} size="large" placeholder="https://example.com/image.jpg" status={errors.imageUrl ? 'error' : ''} />
+                  )}
+                />
+                {errors.imageUrl && <p className="text-red-500 text-xs mt-1">{errors.imageUrl.message}</p>}
+              </Col>
+              
+              <Col xs={24}>
+                <label className="block text-sm font-medium text-primary mb-1">Description <span className="text-red-500">*</span></label>
                 <Controller
                   name="description"
                   control={control}
                   render={({ field }) => (
-                    <TextArea {...field} rows={4} size="large" placeholder="Enter vehicle description..." />
+                    <TextArea {...field} rows={4} size="large" status={errors.description ? 'error' : ''} />
                   )}
                 />
+                {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description.message}</p>}
               </Col>
             </Row>
 

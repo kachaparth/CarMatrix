@@ -59,7 +59,7 @@ const Register = () => {
       >
         <Card className="shadow-2xl border border-divider overflow-hidden rounded-2xl bg-surface">
           <div className="text-center mb-8">
-            <div className="mx-auto w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mb-4">
+            <div className="mx-auto w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mb-4">
               <Car className="w-8 h-8 text-brand" />
             </div>
             <h1 className="text-2xl font-bold text-primary">Create an Account</h1>
@@ -183,7 +183,7 @@ const Register = () => {
             <Button 
               type="primary" 
               htmlType="submit" 
-              className="w-full h-12 text-base font-semibold shadow-none shadow-indigo-200 mt-2"
+              className="w-full h-12 text-base font-semibold shadow-none mt-2"
               loading={loading}
             >
               Register
@@ -191,7 +191,7 @@ const Register = () => {
 
             <div className="text-center text-sm text-secondary mt-6">
               Already have an account?{' '}
-              <Link to="/login" className="text-brand font-semibold hover:text-indigo-700">
+              <Link to="/login" className="text-brand font-semibold hover:opacity-90">
                 Sign in
               </Link>
             </div>

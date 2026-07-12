@@ -22,5 +22,6 @@ export interface Vehicle {
   transmissionType: string;
   color: string;
   description: string;
+  imageUrl?: string;
   availableStock: number;
 }

@@ -66,7 +66,7 @@ const AdminVehicleList = () => {
       title: 'Category',
       dataIndex: 'category',
       key: 'category',
-      render: (category: string) => <Tag color="cyan">{category}</Tag>
+      render: (category: string) => <Tag color="geekblue">{category}</Tag>
     },
     {
       title: 'Price (₹)',
@@ -133,7 +133,7 @@ const AdminVehicleList = () => {
           <p className="text-secondary mb-0">Manage dealership inventory and stock</p>
         </div>
         <Link to="/admin/vehicles/add">
-          <Button type="primary" size="large" icon={<Plus size={18} />} className="bg-brand hover:opacity-90 text-white shadow-none shadow-indigo-200">
+          <Button type="primary" size="large" icon={<Plus size={18} />} className="bg-brand hover:opacity-90 text-white shadow-none">
             Add New Vehicle
           </Button>
         </Link>

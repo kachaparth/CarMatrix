@@ -12,6 +12,7 @@ import VehicleDetails from './pages/inventory/VehicleDetails';
 import AdminVehicleList from './pages/admin/AdminVehicleList';
 import AddVehicle from './pages/admin/AddVehicle';
 import EditVehicle from './pages/admin/EditVehicle';
+import LandingPage from './pages/public/LandingPage';
 
 const NotFound = () => <div className="p-8 text-center mt-20"><h1 className="text-4xl font-bold">404</h1><p>Page Not Found</p></div>;
 const Unauthorized = () => <div className="p-8 text-center mt-20"><h1 className="text-4xl font-bold text-red-500">401</h1><p>Unauthorized Access</p></div>;
@@ -45,7 +46,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* Protected Routes */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/" element={<LandingPage />} />
         
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         

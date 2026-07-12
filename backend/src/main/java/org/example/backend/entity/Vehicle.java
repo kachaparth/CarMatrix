@@ -66,6 +66,9 @@ public class Vehicle {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(length = 1000)
+    private String imageUrl;
+
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 

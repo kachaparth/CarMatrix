@@ -30,6 +30,8 @@ public class CreateVehicleRequest {
     @Max(value = 2100)
     private Integer manufacturingYear;
 
+    private String imageUrl;
+
     @NotNull(message = "Price is required.")
     @DecimalMin(value = "0.0", inclusive = false)
     private BigDecimal price;

@@ -43,7 +43,8 @@ const EditVehicle = () => {
         fuelType: vehicle.fuelType as any,
         transmissionType: vehicle.transmissionType as any,
         color: vehicle.color,
-        description: vehicle.description || ''
+        description: vehicle.description || '',
+        imageUrl: vehicle.imageUrl || ''
       });
     }
   }, [vehicle, reset]);
@@ -195,14 +196,27 @@ const EditVehicle = () => {
               </Col>
 
               <Col xs={24}>
-                <label className="block text-sm font-medium text-primary mb-1">Description</label>
+                <label className="block text-sm font-medium text-primary mb-1">Image URL (Optional)</label>
+                <Controller
+                  name="imageUrl"
+                  control={control}
+                  render={({ field }) => (
+                    <Input {...field} size="large" placeholder="https://example.com/image.jpg" status={errors.imageUrl ? 'error' : ''} />
+                  )}
+                />
+                {errors.imageUrl && <p className="text-red-500 text-xs mt-1">{errors.imageUrl.message}</p>}
+              </Col>
+
+              <Col xs={24}>
+                <label className="block text-sm font-medium text-primary mb-1">Description <span className="text-red-500">*</span></label>
                 <Controller
                   name="description"
                   control={control}
                   render={({ field }) => (
-                    <TextArea {...field} rows={4} size="large" />
+                    <TextArea {...field} rows={4} size="large" status={errors.description ? 'error' : ''} />
                   )}
                 />
+                {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description.message}</p>}
               </Col>
             </Row>
 

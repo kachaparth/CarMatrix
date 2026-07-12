@@ -61,12 +61,16 @@ const VehicleDetails = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Left side: Image/Graphic */}
             <div className="bg-canvas/50 rounded-xl flex items-center justify-center p-12 relative overflow-hidden h-96">
-              <div className="absolute top-4 left-4">
-                <Tag color="cyan" className="text-sm font-semibold px-3 py-1 rounded-full border border-divider">
+              <div className="absolute top-4 left-4 z-10">
+                <Tag color="geekblue" className="text-sm font-semibold px-3 py-1 rounded-full border border-divider">
                   {vehicle.category}
                 </Tag>
               </div>
-              <Car className="w-48 h-48 text-brand/20" />
+              {vehicle.imageUrl ? (
+                <img src={vehicle.imageUrl} alt={`${vehicle.make} ${vehicle.model}`} className="w-full h-full object-cover rounded-xl" />
+              ) : (
+                <Car className="text-brand w-48 h-48 opacity-20" />
+              )}
             </div>
 
             {/* Right side: Details */}
@@ -125,7 +129,7 @@ const VehicleDetails = () => {
                 <Button 
                   type="primary" 
                   size="large" 
-                  className="flex-1 h-14 text-lg font-semibold bg-brand hover:opacity-90 text-white shadow-none shadow-indigo-600/20"
+                  className="flex-1 h-14 text-lg font-semibold bg-brand hover:opacity-90 text-white shadow-none"
                   icon={<ShoppingCart size={20} />}
                   disabled={vehicle.availableStock <= 0}
                   onClick={() => setIsPurchaseModalOpen(true)}

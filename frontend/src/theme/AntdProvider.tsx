@@ -31,6 +31,11 @@ export const AntdProvider = ({ children }: { children: React.ReactNode }) => {
           Input: {
             controlHeight: 40,
           },
+          Layout: {
+            headerBg: theme === 'dark' ? '#0F0F11' : '#FFFFFF',
+            siderBg: theme === 'dark' ? '#161618' : '#F7F8FA',
+            bodyBg: theme === 'dark' ? '#0F0F11' : '#FFFFFF'
+          }
         },
       }}
     >

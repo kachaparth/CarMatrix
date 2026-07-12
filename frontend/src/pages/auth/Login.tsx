@@ -50,7 +50,7 @@ const Login = () => {
       >
         <Card className="shadow-2xl border border-divider overflow-hidden rounded-2xl bg-surface">
           <div className="text-center mb-8">
-            <div className="mx-auto w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mb-4">
+            <div className="mx-auto w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mb-4">
               <Car className="w-8 h-8 text-brand" />
             </div>
             <h1 className="text-2xl font-bold text-primary">Welcome back</h1>
@@ -97,7 +97,7 @@ const Login = () => {
             <Button 
               type="primary" 
               htmlType="submit" 
-              className="w-full h-12 text-base font-semibold shadow-none shadow-indigo-200"
+              className="w-full h-12 text-base font-semibold shadow-none"
               loading={loading}
             >
               Sign In
@@ -105,7 +105,7 @@ const Login = () => {
 
             <div className="text-center text-sm text-secondary mt-6">
               Don't have an account?{' '}
-              <Link to="/register" className="text-brand font-semibold hover:text-indigo-700">
+              <Link to="/register" className="text-brand font-semibold hover:opacity-90">
                 Register here
               </Link>
             </div>
