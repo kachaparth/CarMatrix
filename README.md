@@ -8,7 +8,7 @@
 
 <p align="center">
   <strong>🌐 Live Website:</strong> <a href="https://car-matrix.vercel.app">car-matrix.vercel.app</a><br>
-  <strong>⚙️ Backend API:</strong> <a href="https://carmatrix.onrender.com">carmatrix.onrender.com</a>
+  <strong>⚙️ Swagger API Docs:</strong> <a href="https://carmatrix.onrender.com/swagger-ui/index.html">carmatrix.onrender.com/swagger-ui</a>
 </p>
 
 <p align="center">
