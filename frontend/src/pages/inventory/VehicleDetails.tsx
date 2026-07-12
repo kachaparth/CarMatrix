@@ -66,14 +66,14 @@ const VehicleDetails = () => {
                   {vehicle.category}
                 </Tag>
               </div>
-              <Car className="w-48 h-48 text-cyan-600/20" />
+              <Car className="w-48 h-48 text-indigo-600/20" />
             </div>
 
             {/* Right side: Details */}
             <div className="flex flex-col">
               <div className="mb-6">
                 <Title level={2} className="mb-0 text-slate-800 dark:text-slate-100">{vehicle.make} {vehicle.model}</Title>
-                <Text className="text-3xl font-bold text-orange-500 block mt-2">
+                <Text className="text-3xl font-bold text-emerald-600 block mt-2">
                   ₹{vehicle.price.toLocaleString('en-IN')}
                 </Text>
               </div>
@@ -92,28 +92,28 @@ const VehicleDetails = () => {
 
               <div className="grid grid-cols-2 gap-y-4 gap-x-8 mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-cyan-600"><Fuel size={20} /></div>
+                  <div className="p-2 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-indigo-600"><Fuel size={20} /></div>
                   <div>
                     <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Fuel Type</Text>
                     <Text className="font-semibold text-slate-700 dark:text-slate-300">{vehicle.fuelType}</Text>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-cyan-600"><Settings2 size={20} /></div>
+                  <div className="p-2 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-indigo-600"><Settings2 size={20} /></div>
                   <div>
                     <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Transmission</Text>
                     <Text className="font-semibold text-slate-700 dark:text-slate-300">{vehicle.transmissionType}</Text>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 rounded-lg text-cyan-600"><Palette size={20} /></div>
+                  <div className="p-2 bg-slate-50 rounded-lg text-indigo-600"><Palette size={20} /></div>
                   <div>
                     <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Color</Text>
                     <Text className="font-semibold text-slate-700">{vehicle.color}</Text>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 rounded-lg text-cyan-600"><Calendar size={20} /></div>
+                  <div className="p-2 bg-slate-50 rounded-lg text-indigo-600"><Calendar size={20} /></div>
                   <div>
                     <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Year</Text>
                     <Text className="font-semibold text-slate-700">{vehicle.manufacturingYear}</Text>
@@ -125,7 +125,7 @@ const VehicleDetails = () => {
                 <Button 
                   type="primary" 
                   size="large" 
-                  className="flex-1 h-14 text-lg font-semibold bg-cyan-600 hover:bg-cyan-700 shadow-xl shadow-cyan-600/20"
+                  className="flex-1 h-14 text-lg font-semibold bg-indigo-600 hover:bg-indigo-700 shadow-xl shadow-indigo-600/20"
                   icon={<ShoppingCart size={20} />}
                   disabled={vehicle.availableStock <= 0}
                   onClick={() => setIsPurchaseModalOpen(true)}
@@ -148,7 +148,7 @@ const VehicleDetails = () => {
         onCancel={() => setIsPurchaseModalOpen(false)}
         confirmLoading={purchaseMutation.isPending}
         okText="Confirm & Pay"
-        okButtonProps={{ className: 'bg-cyan-600 hover:bg-cyan-700 dark:bg-cyan-700 dark:hover:bg-cyan-600' }}
+        okButtonProps={{ className: 'bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600' }}
         centered
       >
         <div className="py-4">
@@ -159,7 +159,7 @@ const VehicleDetails = () => {
             <Divider className="my-2 dark:border-slate-700" />
             <div className="flex justify-between items-center">
               <span className="font-semibold text-slate-600">Total Amount</span>
-              <span className="font-bold text-2xl text-orange-500">₹{vehicle.price.toLocaleString('en-IN')}</span>
+              <span className="font-bold text-2xl text-emerald-600">₹{vehicle.price.toLocaleString('en-IN')}</span>
             </div>
           </div>
         </div>

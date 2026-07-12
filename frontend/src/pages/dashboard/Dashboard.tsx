@@ -29,7 +29,7 @@ const Dashboard = () => {
             <Statistic 
               title="Total Models" 
               value={totalVehicles} 
-              prefix={<Car className="text-cyan-600 mr-2" size={20} />}
+              prefix={<Car className="text-indigo-600 mr-2" size={20} />}
               loading={isLoading}
             />
           </Card>
@@ -39,7 +39,7 @@ const Dashboard = () => {
             <Statistic 
               title="Total Stock Units" 
               value={totalStock} 
-              prefix={<ListOrdered className="text-orange-500 mr-2" size={20} />}
+              prefix={<ListOrdered className="text-emerald-600 mr-2" size={20} />}
               loading={isLoading}
             />
           </Card>

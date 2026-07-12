@@ -208,7 +208,7 @@ const EditVehicle = () => {
 
             <div className="flex justify-end gap-4 pt-4 border-t border-slate-100 dark:border-slate-700">
               <Button size="large" onClick={() => navigate('/admin/vehicles')}>Cancel</Button>
-              <Button type="primary" htmlType="submit" size="large" loading={loading} icon={<Save size={18} />} className="bg-cyan-600 hover:bg-cyan-700 shadow-md">
+              <Button type="primary" htmlType="submit" size="large" loading={loading} icon={<Save size={18} />} className="bg-indigo-600 hover:bg-indigo-700 shadow-md">
                 Update Vehicle
               </Button>
             </div>

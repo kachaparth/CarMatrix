@@ -80,7 +80,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
       >
         <div className="h-16 flex items-center justify-center border-b border-slate-100 dark:border-slate-800">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-cyan-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
               <CarFront className="text-white w-5 h-5" />
             </div>
             {!collapsed && <span className="font-bold text-lg text-slate-800 dark:text-slate-100">CarMatrix</span>}
@@ -106,7 +106,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
             />
             {/* Mobile Title */}
             <div className="md:hidden flex items-center gap-2 ml-2">
-              <div className="w-8 h-8 bg-cyan-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
                 <CarFront className="text-white w-5 h-5" />
               </div>
               <span className="font-bold text-lg text-slate-800 dark:text-slate-100">CarMatrix</span>
@@ -122,7 +122,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
             />
             <Dropdown menu={userMenu} trigger={['click']} placement="bottomRight">
               <div className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 p-1.5 rounded-full transition-colors border border-slate-200 dark:border-slate-700">
-                <Avatar className="bg-orange-100 text-orange-600 border border-orange-200 dark:bg-orange-900/50 dark:border-orange-800" icon={<UserIcon size={16} />} />
+                <Avatar className="bg-slate-100 text-slate-600 border border-slate-200 dark:bg-slate-800/50 dark:border-slate-800" icon={<UserIcon size={16} />} />
               </div>
             </Dropdown>
           </div>

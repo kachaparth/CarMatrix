@@ -84,7 +84,7 @@ const VehicleListing = () => {
                     <div className="h-48 bg-slate-100 dark:bg-slate-900/50 flex items-center justify-center relative overflow-hidden">
                        <Car className="text-slate-300 dark:text-slate-700 w-20 h-20 group-hover:scale-110 transition-transform duration-500" />
                        <div className="absolute top-3 right-3">
-                         <Tag color="cyan" className="m-0 rounded-full px-3 font-semibold shadow-sm border-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-cyan-700 dark:text-cyan-400">
+                         <Tag color="cyan" className="m-0 rounded-full px-3 font-semibold shadow-sm border-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-indigo-700 dark:text-indigo-400">
                            {vehicle.category}
                          </Tag>
                        </div>
@@ -95,7 +95,7 @@ const VehicleListing = () => {
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-2">
                     <Title level={4} className="mb-0 truncate pr-2 dark:text-slate-100">{vehicle.make} {vehicle.model}</Title>
-                      <Text className="font-bold text-lg text-orange-500">₹{vehicle.price.toLocaleString('en-IN')}</Text>
+                      <Text className="font-bold text-lg text-emerald-600">₹{vehicle.price.toLocaleString('en-IN')}</Text>
                     </div>
                     <Text type="secondary" className="block mb-4 text-sm line-clamp-2 h-10 dark:text-slate-400">
                       {vehicle.description || 'No description available for this model.'}
@@ -120,7 +120,7 @@ const VehicleListing = () => {
                     <Link to={`/inventory/${vehicle.id}`} className="flex-1">
                       <Button 
                         type="primary" 
-                        className="w-full bg-cyan-600 hover:bg-cyan-700 shadow-md shadow-cyan-200 dark:shadow-cyan-900" 
+                        className="w-full bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-200 dark:shadow-indigo-900" 
                         icon={<ShoppingCart size={16} />}
                         disabled={vehicle.availableStock <= 0}
                       >

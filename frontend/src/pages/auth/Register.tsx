@@ -55,8 +55,8 @@ const Register = () => {
       >
         <Card className="shadow-2xl border-0 overflow-hidden rounded-2xl dark:bg-slate-800">
           <div className="text-center mb-8">
-            <div className="mx-auto w-16 h-16 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center mb-4">
-              <Car className="w-8 h-8 text-cyan-600 dark:text-cyan-500" />
+            <div className="mx-auto w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mb-4">
+              <Car className="w-8 h-8 text-indigo-600 dark:text-indigo-500" />
             </div>
             <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Create an Account</h1>
             <p className="text-slate-500 dark:text-slate-400 mt-2">Join CarMatrix Dealership Platform</p>
@@ -158,7 +158,7 @@ const Register = () => {
             <Button 
               type="primary" 
               htmlType="submit" 
-              className="w-full h-12 text-base font-semibold shadow-md shadow-cyan-200 mt-2"
+              className="w-full h-12 text-base font-semibold shadow-md shadow-indigo-200 mt-2"
               loading={loading}
             >
               Register
@@ -166,7 +166,7 @@ const Register = () => {
 
             <div className="text-center text-sm text-slate-500 mt-6">
               Already have an account?{' '}
-              <Link to="/login" className="text-cyan-600 font-semibold hover:text-cyan-700">
+              <Link to="/login" className="text-indigo-600 font-semibold hover:text-indigo-700">
                 Sign in
               </Link>
             </div>

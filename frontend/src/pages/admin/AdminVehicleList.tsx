@@ -72,7 +72,7 @@ const AdminVehicleList = () => {
       title: 'Price (₹)',
       dataIndex: 'price',
       key: 'price',
-      render: (price: number) => <span className="font-semibold text-orange-500">₹{price.toLocaleString('en-IN')}</span>,
+      render: (price: number) => <span className="font-semibold text-emerald-600">₹{price.toLocaleString('en-IN')}</span>,
       sorter: (a: Vehicle, b: Vehicle) => a.price - b.price,
     },
     {
@@ -92,7 +92,7 @@ const AdminVehicleList = () => {
         <Space size="middle">
           <Button 
             type="text" 
-            className="text-slate-500 hover:text-cyan-600" 
+            className="text-slate-500 hover:text-indigo-600" 
             icon={<PackagePlus size={16} />}
             onClick={() => {
               setSelectedVehicle(record);
@@ -133,7 +133,7 @@ const AdminVehicleList = () => {
           <p className="text-slate-500 dark:text-slate-400 mb-0">Manage dealership inventory and stock</p>
         </div>
         <Link to="/admin/vehicles/add">
-          <Button type="primary" size="large" icon={<Plus size={18} />} className="bg-cyan-600 hover:bg-cyan-700 shadow-md shadow-cyan-200">
+          <Button type="primary" size="large" icon={<Plus size={18} />} className="bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-200">
             Add New Vehicle
           </Button>
         </Link>
@@ -166,7 +166,7 @@ const AdminVehicleList = () => {
         onOk={handleRestock}
         onCancel={() => setRestockModalVisible(false)}
         confirmLoading={restockMutation.isPending}
-        okButtonProps={{ className: 'bg-cyan-600 hover:bg-cyan-700' }}
+        okButtonProps={{ className: 'bg-indigo-600 hover:bg-indigo-700' }}
         centered
       >
         <div className="py-4">
@@ -179,7 +179,7 @@ const AdminVehicleList = () => {
               min={1} 
               max={100} 
               value={restockQty} 
-              onChange={setRestockQty} 
+              onChange={(val) => setRestockQty(Number(val) || 1)} 
               size="large"
               className="w-32"
             />
