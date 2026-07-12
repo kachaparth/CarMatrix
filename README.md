@@ -241,7 +241,8 @@ npm run dev
 ## 📸 Application Previews
 
 ### Landing Page
-![Landing Page](screenshots/landing.png)
+![Landing Page](screenshots/landing1.png)
+![Landing Page](screenshots/landing2.png)
 
 ### Authentication
 ![Login](screenshots/login.png)
@@ -249,6 +250,10 @@ npm run dev
 
 ### Fleet / Inventory
 ![Inventory](screenshots/inventory.png)
+
+### Admin Dashboard & Management
+![Admin Dashboard](screenshots/admin_dashboard.png)
+![Admin Management](screenshots/admin_management.png)
 
 *(Additional screenshots located in the `/screenshots` directory)*
 
