@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -41,25 +41,25 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 p-4 transition-colors duration-300">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"
       >
-        <Card className="shadow-2xl border-0 overflow-hidden rounded-2xl">
+        <Card className="shadow-2xl border-0 overflow-hidden rounded-2xl dark:bg-slate-800">
           <div className="text-center mb-8">
-            <div className="mx-auto w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mb-4">
-              <Car className="w-8 h-8 text-cyan-600" />
+            <div className="mx-auto w-16 h-16 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center mb-4">
+              <Car className="w-8 h-8 text-cyan-600 dark:text-cyan-500" />
             </div>
-            <h1 className="text-2xl font-bold text-slate-800">Welcome back</h1>
-            <p className="text-slate-500 mt-2">Sign in to manage your dealership</p>
+            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Welcome back</h1>
+            <p className="text-slate-500 dark:text-slate-400 mt-2">Sign in to manage your dealership</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
               <Controller
                 name="email"
                 control={control}

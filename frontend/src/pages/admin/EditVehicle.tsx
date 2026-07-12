@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input, Button, Card, Select, InputNumber, Typography, Row, Col } from 'antd';
@@ -7,7 +7,8 @@ import toast from 'react-hot-toast';
 import { vehicleService } from '../../services/vehicle.service';
 import { ArrowLeft, Save } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { vehicleSchema, VehicleFormValues } from './AddVehicle';
+import { vehicleSchema } from './AddVehicle';
+import type { VehicleFormValues } from './AddVehicle';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 const { Title } = Typography;
@@ -77,17 +78,17 @@ const EditVehicle = () => {
 
       <div className="flex justify-between items-center">
         <div>
-          <Title level={2} className="mb-0 text-slate-800">Edit Vehicle</Title>
-          <p className="text-slate-500">Update details for {vehicle?.make} {vehicle?.model}</p>
+          <Title level={2} className="mb-0 text-slate-800 dark:text-slate-100">Edit Vehicle</Title>
+          <p className="text-slate-500 dark:text-slate-400">Update details for {vehicle?.make} {vehicle?.model}</p>
         </div>
       </div>
 
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-        <Card className="shadow-sm border-slate-100 rounded-2xl overflow-hidden">
+        <Card className="shadow-sm border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden dark:bg-slate-800">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <Row gutter={[24, 24]}>
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Make <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Make <span className="text-red-500">*</span></label>
                 <Controller
                   name="make"
                   control={control}
@@ -99,7 +100,7 @@ const EditVehicle = () => {
               </Col>
               
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Model <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Model <span className="text-red-500">*</span></label>
                 <Controller
                   name="model"
                   control={control}
@@ -111,7 +112,7 @@ const EditVehicle = () => {
               </Col>
 
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Category <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Category <span className="text-red-500">*</span></label>
                 <Controller
                   name="category"
                   control={control}
@@ -127,7 +128,7 @@ const EditVehicle = () => {
               </Col>
 
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Price (₹) <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Price (₹) <span className="text-red-500">*</span></label>
                 <Controller
                   name="price"
                   control={control}
@@ -139,7 +140,7 @@ const EditVehicle = () => {
               </Col>
 
               <Col xs={24} md={8}>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Year <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Year <span className="text-red-500">*</span></label>
                 <Controller
                   name="manufacturingYear"
                   control={control}
@@ -205,7 +206,7 @@ const EditVehicle = () => {
               </Col>
             </Row>
 
-            <div className="flex justify-end gap-4 pt-4 border-t border-slate-100">
+            <div className="flex justify-end gap-4 pt-4 border-t border-slate-100 dark:border-slate-700">
               <Button size="large" onClick={() => navigate('/admin/vehicles')}>Cancel</Button>
               <Button type="primary" htmlType="submit" size="large" loading={loading} icon={<Save size={18} />} className="bg-cyan-600 hover:bg-cyan-700 shadow-md">
                 Update Vehicle

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Login from './pages/auth/Login';
@@ -54,9 +54,9 @@ function App() {
         <Route path="/inventory/:id" element={<ProtectedRoute><VehicleDetails /></ProtectedRoute>} />
 
         {/* Admin Routes */}
-        <Route path="/admin/vehicles" element={<ProtectedRoute><AdminVehicleList /></ProtectedRoute>} />
-        <Route path="/admin/vehicles/add" element={<ProtectedRoute><AddVehicle /></ProtectedRoute>} />
-        <Route path="/admin/vehicles/edit/:id" element={<ProtectedRoute><EditVehicle /></ProtectedRoute>} />
+        <Route path="/admin/vehicles" element={<AdminRoute><AdminVehicleList /></AdminRoute>} />
+        <Route path="/admin/vehicles/add" element={<AdminRoute><AddVehicle /></AdminRoute>} />
+        <Route path="/admin/vehicles/edit/:id" element={<AdminRoute><EditVehicle /></AdminRoute>} />
 
         {/* Error Routes */}
         <Route path="/unauthorized" element={<Unauthorized />} />

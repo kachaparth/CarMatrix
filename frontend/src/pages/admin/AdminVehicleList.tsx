@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Table, Button, Space, Popconfirm, Tag, Input, Typography, Modal, InputNumber } from 'antd';
 import { Plus, Edit, Trash2, PackagePlus, Search } from 'lucide-react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { vehicleService, inventoryService } from '../../services/vehicle.service';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Vehicle } from '../../types';
+import type { Vehicle } from '../../types';
 
 const { Title } = Typography;
 
@@ -72,7 +72,7 @@ const AdminVehicleList = () => {
       title: 'Price (₹)',
       dataIndex: 'price',
       key: 'price',
-      render: (price: number) => <span className="font-semibold text-orange-500">{price.toLocaleString()}</span>,
+      render: (price: number) => <span className="font-semibold text-orange-500">₹{price.toLocaleString('en-IN')}</span>,
       sorter: (a: Vehicle, b: Vehicle) => a.price - b.price,
     },
     {
@@ -127,10 +127,10 @@ const AdminVehicleList = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
         <div>
-          <Title level={3} className="mb-0 text-slate-800">Vehicle Management</Title>
-          <p className="text-slate-500 mb-0">Manage dealership inventory and stock</p>
+          <Title level={3} className="mb-0 text-slate-800 dark:text-slate-100">Vehicle Management</Title>
+          <p className="text-slate-500 dark:text-slate-400 mb-0">Manage dealership inventory and stock</p>
         </div>
         <Link to="/admin/vehicles/add">
           <Button type="primary" size="large" icon={<Plus size={18} />} className="bg-cyan-600 hover:bg-cyan-700 shadow-md shadow-cyan-200">
@@ -139,7 +139,7 @@ const AdminVehicleList = () => {
         </Link>
       </div>
 
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+      <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
         <div className="mb-6 max-w-md">
           <Input 
             placeholder="Search by make or model..." 
@@ -156,7 +156,7 @@ const AdminVehicleList = () => {
           rowKey="id" 
           loading={isLoading}
           pagination={{ pageSize: 10 }}
-          className="border border-slate-100 rounded-lg overflow-hidden"
+          className="border border-slate-100 dark:border-slate-700 rounded-lg overflow-hidden"
         />
       </div>
 
@@ -170,11 +170,11 @@ const AdminVehicleList = () => {
         centered
       >
         <div className="py-4">
-          <p className="mb-4 text-slate-600">
-            How many units of <strong className="text-slate-800">{selectedVehicle?.make} {selectedVehicle?.model}</strong> do you want to add to inventory?
+          <p className="mb-4 text-slate-600 dark:text-slate-300">
+            How many units of <strong className="text-slate-800 dark:text-slate-100">{selectedVehicle?.make} {selectedVehicle?.model}</strong> do you want to add to inventory?
           </p>
           <div className="flex items-center gap-4">
-            <span className="font-medium text-slate-700">Quantity:</span>
+            <span className="font-medium text-slate-700 dark:text-slate-300">Quantity:</span>
             <InputNumber 
               min={1} 
               max={100} 

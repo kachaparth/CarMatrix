@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Button, Typography, Tag, Divider, Modal, message } from 'antd';
+import { Card, Button, Typography, Tag, Divider, Modal } from 'antd';
 import { ArrowLeft, Car, Fuel, Settings2, Palette, Calendar, ShoppingCart, ShieldCheck } from 'lucide-react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { vehicleService, inventoryService } from '../../services/vehicle.service';
@@ -57,10 +57,10 @@ const VehicleDetails = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <Card className="rounded-2xl overflow-hidden shadow-lg border-0">
+        <Card className="rounded-2xl overflow-hidden shadow-lg border-0 dark:bg-slate-800">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Left side: Image/Graphic */}
-            <div className="bg-slate-50 rounded-xl flex items-center justify-center p-12 relative overflow-hidden h-96">
+            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl flex items-center justify-center p-12 relative overflow-hidden h-96">
               <div className="absolute top-4 left-4">
                 <Tag color="cyan" className="text-sm font-semibold px-3 py-1 rounded-full border-0">
                   {vehicle.category}
@@ -72,9 +72,9 @@ const VehicleDetails = () => {
             {/* Right side: Details */}
             <div className="flex flex-col">
               <div className="mb-6">
-                <Title level={2} className="mb-0 text-slate-800">{vehicle.make} {vehicle.model}</Title>
+                <Title level={2} className="mb-0 text-slate-800 dark:text-slate-100">{vehicle.make} {vehicle.model}</Title>
                 <Text className="text-3xl font-bold text-orange-500 block mt-2">
-                  ₹{vehicle.price.toLocaleString()}
+                  ₹{vehicle.price.toLocaleString('en-IN')}
                 </Text>
               </div>
 
@@ -84,25 +84,25 @@ const VehicleDetails = () => {
                 </Tag>
               </div>
 
-              <Text className="text-slate-600 text-base mb-8">
+              <Text className="text-slate-600 dark:text-slate-400 text-base mb-8">
                 {vehicle.description || 'This premium vehicle offers exceptional performance, comfort, and reliability. Experience the perfect blend of engineering and design.'}
               </Text>
 
-              <Divider className="my-2" />
+              <Divider className="my-2 dark:border-slate-700" />
 
               <div className="grid grid-cols-2 gap-y-4 gap-x-8 mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 rounded-lg text-cyan-600"><Fuel size={20} /></div>
+                  <div className="p-2 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-cyan-600"><Fuel size={20} /></div>
                   <div>
                     <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Fuel Type</Text>
-                    <Text className="font-semibold text-slate-700">{vehicle.fuelType}</Text>
+                    <Text className="font-semibold text-slate-700 dark:text-slate-300">{vehicle.fuelType}</Text>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 rounded-lg text-cyan-600"><Settings2 size={20} /></div>
+                  <div className="p-2 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-cyan-600"><Settings2 size={20} /></div>
                   <div>
                     <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Transmission</Text>
-                    <Text className="font-semibold text-slate-700">{vehicle.transmissionType}</Text>
+                    <Text className="font-semibold text-slate-700 dark:text-slate-300">{vehicle.transmissionType}</Text>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -121,7 +121,7 @@ const VehicleDetails = () => {
                 </div>
               </div>
 
-              <div className="mt-auto pt-6 border-t border-slate-100 flex gap-4">
+              <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700/50 flex gap-4">
                 <Button 
                   type="primary" 
                   size="large" 
@@ -148,18 +148,18 @@ const VehicleDetails = () => {
         onCancel={() => setIsPurchaseModalOpen(false)}
         confirmLoading={purchaseMutation.isPending}
         okText="Confirm & Pay"
-        okButtonProps={{ className: 'bg-cyan-600 hover:bg-cyan-700' }}
+        okButtonProps={{ className: 'bg-cyan-600 hover:bg-cyan-700 dark:bg-cyan-700 dark:hover:bg-cyan-600' }}
         centered
       >
         <div className="py-4">
-          <p className="text-lg mb-2">You are about to purchase:</p>
-          <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
-            <p className="font-bold text-slate-800 text-xl">{vehicle.make} {vehicle.model}</p>
-            <p className="text-slate-500">Color: {vehicle.color} • Year: {vehicle.manufacturingYear}</p>
-            <Divider className="my-2" />
+          <p className="text-lg mb-2 dark:text-slate-300">You are about to purchase:</p>
+          <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg border border-slate-100 dark:border-slate-700">
+            <p className="font-bold text-slate-800 dark:text-slate-100 text-xl">{vehicle.make} {vehicle.model}</p>
+            <p className="text-slate-500 dark:text-slate-400">Color: {vehicle.color} • Year: {vehicle.manufacturingYear}</p>
+            <Divider className="my-2 dark:border-slate-700" />
             <div className="flex justify-between items-center">
               <span className="font-semibold text-slate-600">Total Amount</span>
-              <span className="font-bold text-2xl text-orange-500">₹{vehicle.price.toLocaleString()}</span>
+              <span className="font-bold text-2xl text-orange-500">₹{vehicle.price.toLocaleString('en-IN')}</span>
             </div>
           </div>
         </div>

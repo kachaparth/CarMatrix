@@ -1,5 +1,5 @@
 import api from '../api/axios';
-import { Vehicle } from '../types';
+import type { Vehicle } from '../types';
 
 export const vehicleService = {
   getAll: async (): Promise<Vehicle[]> => {

@@ -1,10 +1,14 @@
 import React from 'react';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme as antdTheme } from 'antd';
+import { useTheme } from '../context/ThemeContext';
 
 export const AntdProvider = ({ children }: { children: React.ReactNode }) => {
+  const { theme } = useTheme();
+  
   return (
     <ConfigProvider
       theme={{
+        algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
         token: {
           colorPrimary: '#0891b2', // cyan-600
           colorInfo: '#0891b2', // cyan-600
@@ -13,6 +17,8 @@ export const AntdProvider = ({ children }: { children: React.ReactNode }) => {
           colorError: '#ef4444', // red-500
           borderRadius: 8,
           fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+          colorBgBase: theme === 'dark' ? '#0f172a' : '#ffffff',
+          colorTextBase: theme === 'dark' ? '#f8fafc' : '#0f172a',
         },
         components: {
           Button: {

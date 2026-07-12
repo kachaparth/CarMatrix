@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { User } from '../types';
+import type { User } from '../types';
 
 interface AuthContextType {
   user: User | null;
@@ -12,22 +12,22 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  
-  useEffect(() => {
-    const storedToken = localStorage.getItem('token');
+  const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('user');
-    
-    if (storedToken && storedUser) {
-      setToken(storedToken);
+    if (storedUser) {
       try {
-        setUser(JSON.parse(storedUser));
+        return JSON.parse(storedUser);
       } catch(e) {
         localStorage.removeItem('user');
+        return null;
       }
     }
-  }, []);
+    return null;
+  });
+  
+  const [token, setToken] = useState<string | null>(() => {
+    return localStorage.getItem('token');
+  });
 
   const login = (newToken: string, newUser: User) => {
     localStorage.setItem('token', newToken);
