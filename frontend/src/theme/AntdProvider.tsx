@@ -10,15 +10,15 @@ export const AntdProvider = ({ children }: { children: React.ReactNode }) => {
       theme={{
         algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
         token: {
-          colorPrimary: '#4f46e5', // indigo-600
-          colorInfo: '#4f46e5', // indigo-600
-          colorSuccess: '#10b981', // emerald-500
-          colorWarning: '#f59e0b', // amber-500
-          colorError: '#ef4444', // red-500
+          colorPrimary: '#5E6AD2', // brand accent
+          colorInfo: '#5E6AD2',
+          colorSuccess: '#10b981', // keeping emerald for success
+          colorWarning: '#f59e0b', // keeping amber for warning
+          colorError: '#ef4444',
           borderRadius: 8,
           fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
-          colorBgBase: theme === 'dark' ? '#0f172a' : '#ffffff',
-          colorTextBase: theme === 'dark' ? '#f8fafc' : '#0f172a',
+          colorBgBase: theme === 'dark' ? '#161618' : '#F7F8FA', // using surface color for components
+          colorTextBase: theme === 'dark' ? '#EEEEF1' : '#111111',
         },
         components: {
           Button: {

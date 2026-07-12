@@ -50,7 +50,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
         label: (
           <div className="flex flex-col">
             <span className="font-semibold">{user?.firstName || 'User'}</span>
-            <span className="text-xs text-slate-500">{user?.email}</span>
+            <span className="text-xs text-secondary">{user?.email}</span>
           </div>
         ),
         disabled: true,
@@ -69,21 +69,21 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <Layout className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    <Layout className="min-h-screen bg-canvas transition-colors duration-300">
       <Sider 
         trigger={null} 
         collapsible 
         collapsed={collapsed}
         theme={theme === 'dark' ? 'dark' : 'light'}
-        className="shadow-xl border-r border-slate-100 dark:border-slate-800 hidden md:block dark:bg-slate-900"
+        className="shadow-none border-r border-divider hidden md:block bg-canvas"
         width={260}
       >
-        <div className="h-16 flex items-center justify-center border-b border-slate-100 dark:border-slate-800">
+        <div className="h-16 flex items-center justify-center border-b border-divider">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center">
               <CarFront className="text-white w-5 h-5" />
             </div>
-            {!collapsed && <span className="font-bold text-lg text-slate-800 dark:text-slate-100">CarMatrix</span>}
+            {!collapsed && <span className="font-bold text-lg text-primary">CarMatrix</span>}
           </Link>
         </div>
         <Menu
@@ -91,38 +91,38 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
           selectedKeys={[location.pathname.split('/').slice(0,3).join('/')]}
           items={menuItems}
           theme={theme === 'dark' ? 'dark' : 'light'}
-          className="border-none mt-4 px-2 bg-transparent dark:text-slate-300"
+          className="border-none mt-4 px-2 bg-transparent text-secondary"
         />
       </Sider>
 
       <Layout className="bg-transparent">
-        <Header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-4 flex items-center justify-between sticky top-0 z-10 shadow-sm h-16 transition-colors duration-300">
+        <Header className="bg-surface/80 backdrop-blur-md border-b border-divider px-4 flex items-center justify-between sticky top-0 z-10 shadow-none h-16 transition-colors duration-300">
           <div className="flex items-center">
             <Button
               type="text"
-              icon={<MenuIcon className="text-slate-600 dark:text-slate-300" />}
+              icon={<MenuIcon className="text-secondary" />}
               onClick={() => setCollapsed(!collapsed)}
               className="md:block hidden"
             />
             {/* Mobile Title */}
             <div className="md:hidden flex items-center gap-2 ml-2">
-              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center">
                 <CarFront className="text-white w-5 h-5" />
               </div>
-              <span className="font-bold text-lg text-slate-800 dark:text-slate-100">CarMatrix</span>
+              <span className="font-bold text-lg text-primary">CarMatrix</span>
             </div>
           </div>
 
           <div className="flex items-center gap-4">
             <Button 
               type="text" 
-              icon={theme === 'light' ? <Moon size={18} className="text-slate-600" /> : <Sun size={18} className="text-yellow-400" />} 
+              icon={theme === 'light' ? <Moon size={18} className="text-secondary" /> : <Sun size={18} className="text-yellow-400" />} 
               onClick={toggleTheme}
               className="flex items-center justify-center"
             />
             <Dropdown menu={userMenu} trigger={['click']} placement="bottomRight">
-              <div className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 p-1.5 rounded-full transition-colors border border-slate-200 dark:border-slate-700">
-                <Avatar className="bg-slate-100 text-slate-600 border border-slate-200 dark:bg-slate-800/50 dark:border-slate-800" icon={<UserIcon size={16} />} />
+              <div className="flex items-center gap-2 cursor-pointer hover:bg-divider p-1.5 rounded-full transition-colors border border-divider">
+                <Avatar className="bg-canvas text-secondary border border-divider" icon={<UserIcon size={16} />} />
               </div>
             </Dropdown>
           </div>

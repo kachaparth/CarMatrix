@@ -19,23 +19,23 @@ const Dashboard = () => {
   return (
     <div className="space-y-6">
       <div>
-        <Title level={2} className="mb-0 text-slate-800 dark:text-slate-100">Dashboard</Title>
-        <p className="text-slate-500 dark:text-slate-400">Welcome to your CarMatrix overview</p>
+        <Title level={2} className="mb-0 text-primary">Dashboard</Title>
+        <p className="text-secondary">Welcome to your CarMatrix overview</p>
       </div>
 
       <Row gutter={[24, 24]}>
         <Col xs={24} sm={12} lg={6}>
-          <Card className="shadow-sm border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow dark:bg-slate-800">
+          <Card className="shadow-none border-divider hover:shadow-none transition-shadow bg-surface">
             <Statistic 
               title="Total Models" 
               value={totalVehicles} 
-              prefix={<Car className="text-indigo-600 mr-2" size={20} />}
+              prefix={<Car className="text-brand mr-2" size={20} />}
               loading={isLoading}
             />
           </Card>
         </Col>
         <Col xs={24} sm={12} lg={6}>
-          <Card className="shadow-sm border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow dark:bg-slate-800">
+          <Card className="shadow-none border-divider hover:shadow-none transition-shadow bg-surface">
             <Statistic 
               title="Total Stock Units" 
               value={totalStock} 
@@ -45,7 +45,7 @@ const Dashboard = () => {
           </Card>
         </Col>
         <Col xs={24} sm={12} lg={6}>
-          <Card className="shadow-sm border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow dark:bg-slate-800">
+          <Card className="shadow-none border-divider hover:shadow-none transition-shadow bg-surface">
             <Statistic 
               title="Total Inventory Value" 
               value={totalValue} 
@@ -56,7 +56,7 @@ const Dashboard = () => {
           </Card>
         </Col>
         <Col xs={24} sm={12} lg={6}>
-          <Card className="shadow-sm border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow dark:bg-slate-800">
+          <Card className="shadow-none border-divider hover:shadow-none transition-shadow bg-surface">
             <Statistic 
               title="Active Categories" 
               value={new Set(vehicles?.map(v => v.category)).size} 
@@ -67,9 +67,9 @@ const Dashboard = () => {
         </Col>
       </Row>
 
-      <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 mt-6">
-        <Title level={4} className="dark:text-slate-100">Recent Activity Placeholder</Title>
-        <div className="h-48 flex items-center justify-center text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-dashed border-slate-200 dark:border-slate-700">
+      <div className="bg-surface p-6 rounded-2xl shadow-none border border-divider mt-6">
+        <Title level={4} className="text-primary">Recent Activity Placeholder</Title>
+        <div className="h-48 flex items-center justify-center text-secondary dark:text-secondary bg-canvas/50 rounded-lg border border-dashed border-divider">
           Chart or Activity Feed goes here
         </div>
       </div>

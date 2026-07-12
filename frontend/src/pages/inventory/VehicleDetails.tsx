@@ -34,7 +34,7 @@ const VehicleDetails = () => {
     }
   });
 
-  if (isLoading) return <div className="p-12 text-center text-slate-500 font-semibold animate-pulse">Loading vehicle details...</div>;
+  if (isLoading) return <div className="p-12 text-center text-secondary font-semibold animate-pulse">Loading vehicle details...</div>;
   if (error || !vehicle) return <div className="p-12 text-center text-red-500 font-semibold">Error loading vehicle details.</div>;
 
   const handlePurchase = () => {
@@ -47,7 +47,7 @@ const VehicleDetails = () => {
         type="text" 
         icon={<ArrowLeft size={16} />} 
         onClick={() => navigate('/inventory')}
-        className="text-slate-500 hover:text-slate-800"
+        className="text-secondary hover:text-primary"
       >
         Back to Inventory
       </Button>
@@ -57,75 +57,75 @@ const VehicleDetails = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <Card className="rounded-2xl overflow-hidden shadow-lg border-0 dark:bg-slate-800">
+        <Card className="rounded-2xl overflow-hidden shadow-none border border-divider bg-surface">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Left side: Image/Graphic */}
-            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl flex items-center justify-center p-12 relative overflow-hidden h-96">
+            <div className="bg-canvas/50 rounded-xl flex items-center justify-center p-12 relative overflow-hidden h-96">
               <div className="absolute top-4 left-4">
-                <Tag color="cyan" className="text-sm font-semibold px-3 py-1 rounded-full border-0">
+                <Tag color="cyan" className="text-sm font-semibold px-3 py-1 rounded-full border border-divider">
                   {vehicle.category}
                 </Tag>
               </div>
-              <Car className="w-48 h-48 text-indigo-600/20" />
+              <Car className="w-48 h-48 text-brand/20" />
             </div>
 
             {/* Right side: Details */}
             <div className="flex flex-col">
               <div className="mb-6">
-                <Title level={2} className="mb-0 text-slate-800 dark:text-slate-100">{vehicle.make} {vehicle.model}</Title>
+                <Title level={2} className="mb-0 text-primary">{vehicle.make} {vehicle.model}</Title>
                 <Text className="text-3xl font-bold text-emerald-600 block mt-2">
                   ₹{vehicle.price.toLocaleString('en-IN')}
                 </Text>
               </div>
 
               <div className="flex items-center gap-2 mb-6">
-                <Tag color={vehicle.availableStock > 0 ? 'success' : 'error'} className="rounded-full px-3 py-1 text-sm font-medium border-0">
+                <Tag color={vehicle.availableStock > 0 ? 'success' : 'error'} className="rounded-full px-3 py-1 text-sm font-medium border border-divider">
                   {vehicle.availableStock > 0 ? `${vehicle.availableStock} Available in Stock` : 'Out of Stock'}
                 </Tag>
               </div>
 
-              <Text className="text-slate-600 dark:text-slate-400 text-base mb-8">
+              <Text className="text-secondary text-base mb-8">
                 {vehicle.description || 'This premium vehicle offers exceptional performance, comfort, and reliability. Experience the perfect blend of engineering and design.'}
               </Text>
 
-              <Divider className="my-2 dark:border-slate-700" />
+              <Divider className="my-2 border-divider" />
 
               <div className="grid grid-cols-2 gap-y-4 gap-x-8 mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-indigo-600"><Fuel size={20} /></div>
+                  <div className="p-2 bg-canvas/50 rounded-lg text-brand"><Fuel size={20} /></div>
                   <div>
-                    <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Fuel Type</Text>
-                    <Text className="font-semibold text-slate-700 dark:text-slate-300">{vehicle.fuelType}</Text>
+                    <Text className="text-xs text-secondary block uppercase font-bold tracking-wider">Fuel Type</Text>
+                    <Text className="font-semibold text-primary">{vehicle.fuelType}</Text>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-indigo-600"><Settings2 size={20} /></div>
+                  <div className="p-2 bg-canvas/50 rounded-lg text-brand"><Settings2 size={20} /></div>
                   <div>
-                    <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Transmission</Text>
-                    <Text className="font-semibold text-slate-700 dark:text-slate-300">{vehicle.transmissionType}</Text>
+                    <Text className="text-xs text-secondary block uppercase font-bold tracking-wider">Transmission</Text>
+                    <Text className="font-semibold text-primary">{vehicle.transmissionType}</Text>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 rounded-lg text-indigo-600"><Palette size={20} /></div>
+                  <div className="p-2 bg-surface rounded-lg text-brand"><Palette size={20} /></div>
                   <div>
-                    <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Color</Text>
-                    <Text className="font-semibold text-slate-700">{vehicle.color}</Text>
+                    <Text className="text-xs text-secondary block uppercase font-bold tracking-wider">Color</Text>
+                    <Text className="font-semibold text-primary">{vehicle.color}</Text>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 rounded-lg text-indigo-600"><Calendar size={20} /></div>
+                  <div className="p-2 bg-surface rounded-lg text-brand"><Calendar size={20} /></div>
                   <div>
-                    <Text className="text-xs text-slate-400 block uppercase font-bold tracking-wider">Year</Text>
-                    <Text className="font-semibold text-slate-700">{vehicle.manufacturingYear}</Text>
+                    <Text className="text-xs text-secondary block uppercase font-bold tracking-wider">Year</Text>
+                    <Text className="font-semibold text-primary">{vehicle.manufacturingYear}</Text>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700/50 flex gap-4">
+              <div className="mt-auto pt-6 border-t border-divider/50 flex gap-4">
                 <Button 
                   type="primary" 
                   size="large" 
-                  className="flex-1 h-14 text-lg font-semibold bg-indigo-600 hover:bg-indigo-700 shadow-xl shadow-indigo-600/20"
+                  className="flex-1 h-14 text-lg font-semibold bg-brand hover:opacity-90 text-white shadow-none shadow-indigo-600/20"
                   icon={<ShoppingCart size={20} />}
                   disabled={vehicle.availableStock <= 0}
                   onClick={() => setIsPurchaseModalOpen(true)}
@@ -133,7 +133,7 @@ const VehicleDetails = () => {
                   Purchase Now
                 </Button>
               </div>
-              <div className="mt-4 flex items-center justify-center gap-2 text-slate-400 text-xs">
+              <div className="mt-4 flex items-center justify-center gap-2 text-secondary text-xs">
                 <ShieldCheck size={14} /> Secure transaction via CarMatrix
               </div>
             </div>
@@ -148,17 +148,17 @@ const VehicleDetails = () => {
         onCancel={() => setIsPurchaseModalOpen(false)}
         confirmLoading={purchaseMutation.isPending}
         okText="Confirm & Pay"
-        okButtonProps={{ className: 'bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600' }}
+        okButtonProps={{ className: 'bg-brand hover:opacity-90 text-white' }}
         centered
       >
         <div className="py-4">
-          <p className="text-lg mb-2 dark:text-slate-300">You are about to purchase:</p>
-          <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg border border-slate-100 dark:border-slate-700">
-            <p className="font-bold text-slate-800 dark:text-slate-100 text-xl">{vehicle.make} {vehicle.model}</p>
-            <p className="text-slate-500 dark:text-slate-400">Color: {vehicle.color} • Year: {vehicle.manufacturingYear}</p>
-            <Divider className="my-2 dark:border-slate-700" />
+          <p className="text-lg mb-2 text-secondary">You are about to purchase:</p>
+          <div className="bg-surface p-4 rounded-lg border border-divider">
+            <p className="font-bold text-primary text-xl">{vehicle.make} {vehicle.model}</p>
+            <p className="text-secondary">Color: {vehicle.color} • Year: {vehicle.manufacturingYear}</p>
+            <Divider className="my-2 border-divider" />
             <div className="flex justify-between items-center">
-              <span className="font-semibold text-slate-600">Total Amount</span>
+              <span className="font-semibold text-secondary">Total Amount</span>
               <span className="font-bold text-2xl text-emerald-600">₹{vehicle.price.toLocaleString('en-IN')}</span>
             </div>
           </div>

@@ -22,16 +22,16 @@ const VehicleListing = () => {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <Title level={2} className="mb-0 text-slate-800 dark:text-slate-100">Vehicle Inventory</Title>
-          <p className="text-slate-500 dark:text-slate-400">Browse and manage available vehicles</p>
+          <Title level={2} className="mb-0 text-primary">Vehicle Inventory</Title>
+          <p className="text-secondary">Browse and manage available vehicles</p>
         </div>
       </div>
 
-      <Card className="shadow-sm border-slate-100 dark:border-slate-800 dark:bg-slate-800">
+      <Card className="shadow-none border-divider bg-surface">
         <div className="flex flex-col md:flex-row gap-4">
           <Input 
             placeholder="Search by make..." 
-            prefix={<Search className="text-slate-400 w-4 h-4" />}
+            prefix={<Search className="text-secondary w-4 h-4" />}
             className="flex-1"
             size="large"
             value={searchTerm}
@@ -59,14 +59,14 @@ const VehicleListing = () => {
         <Row gutter={[24, 24]}>
           {[1,2,3,4].map(i => (
             <Col xs={24} sm={12} lg={8} xl={6} key={i}>
-              <Card className="rounded-2xl overflow-hidden shadow-sm">
+              <Card className="rounded-2xl overflow-hidden shadow-none">
                 <Skeleton active paragraph={{ rows: 4 }} />
               </Card>
             </Col>
           ))}
         </Row>
       ) : vehicles?.length === 0 ? (
-        <div className="bg-white dark:bg-slate-800 p-12 rounded-2xl shadow-sm flex items-center justify-center border border-slate-100 dark:border-slate-800">
+        <div className="bg-surface p-12 rounded-2xl shadow-none flex items-center justify-center border border-divider">
           <Empty description="No vehicles found matching your criteria" />
         </div>
       ) : (
@@ -79,12 +79,12 @@ const VehicleListing = () => {
                 transition={{ delay: index * 0.05 }}
               >
                 <Card 
-                  className="rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border-slate-100 dark:border-slate-800 dark:bg-slate-800 group cursor-pointer h-full flex flex-col"
+                  className="rounded-2xl overflow-hidden shadow-none hover:shadow-none transition-all duration-300 border-divider bg-surface group cursor-pointer h-full flex flex-col"
                   cover={
-                    <div className="h-48 bg-slate-100 dark:bg-slate-900/50 flex items-center justify-center relative overflow-hidden">
-                       <Car className="text-slate-300 dark:text-slate-700 w-20 h-20 group-hover:scale-110 transition-transform duration-500" />
+                    <div className="h-48 bg-slate-100 bg-surface flex items-center justify-center relative overflow-hidden">
+                       <Car className="text-slate-300 dark:text-primary w-20 h-20 group-hover:scale-110 transition-transform duration-500" />
                        <div className="absolute top-3 right-3">
-                         <Tag color="cyan" className="m-0 rounded-full px-3 font-semibold shadow-sm border-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-indigo-700 dark:text-indigo-400">
+                         <Tag color="cyan" className="m-0 rounded-full px-3 font-semibold shadow-none border border-divider bg-surface/90 bg-surface/90 backdrop-blur-sm text-indigo-700 dark:text-indigo-400">
                            {vehicle.category}
                          </Tag>
                        </div>
@@ -94,10 +94,10 @@ const VehicleListing = () => {
                 >
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-2">
-                    <Title level={4} className="mb-0 truncate pr-2 dark:text-slate-100">{vehicle.make} {vehicle.model}</Title>
+                    <Title level={4} className="mb-0 truncate pr-2 text-primary">{vehicle.make} {vehicle.model}</Title>
                       <Text className="font-bold text-lg text-emerald-600">₹{vehicle.price.toLocaleString('en-IN')}</Text>
                     </div>
-                    <Text type="secondary" className="block mb-4 text-sm line-clamp-2 h-10 dark:text-slate-400">
+                    <Text type="secondary" className="block mb-4 text-sm line-clamp-2 h-10 dark:text-secondary">
                       {vehicle.description || 'No description available for this model.'}
                     </Text>
                     
@@ -105,22 +105,22 @@ const VehicleListing = () => {
                       <Tag color={vehicle.availableStock > 0 ? 'success' : 'error'} className="rounded-full m-0">
                         {vehicle.availableStock > 0 ? `${vehicle.availableStock} in stock` : 'Out of Stock'}
                       </Tag>
-                      <Tag className="rounded-full bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 m-0 border-slate-200 dark:border-slate-700">
+                      <Tag className="rounded-full bg-canvas/50 text-secondary m-0 border-divider">
                         {vehicle.fuelType}
                       </Tag>
                     </div>
                   </div>
 
-                  <div className="flex gap-2 mt-auto pt-4 border-t border-slate-50 dark:border-slate-700/50">
+                  <div className="flex gap-2 mt-auto pt-4 border-t border-slate-50 border-divider/50">
                     <Link to={`/inventory/${vehicle.id}`} className="flex-1">
-                      <Button className="w-full text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600" icon={<Info size={16} />}>
+                      <Button className="w-full text-secondary bg-surface dark:bg-slate-700 border-divider dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600" icon={<Info size={16} />}>
                         Details
                       </Button>
                     </Link>
                     <Link to={`/inventory/${vehicle.id}`} className="flex-1">
                       <Button 
                         type="primary" 
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-200 dark:shadow-indigo-900" 
+                        className="w-full bg-brand hover:opacity-90 text-white shadow-none shadow-indigo-200 dark:shadow-indigo-900" 
                         icon={<ShoppingCart size={16} />}
                         disabled={vehicle.availableStock <= 0}
                       >

@@ -41,25 +41,25 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 p-4 transition-colors duration-300">
+    <div className="min-h-screen flex items-center justify-center bg-canvas p-4 transition-colors duration-300">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"
       >
-        <Card className="shadow-2xl border-0 overflow-hidden rounded-2xl dark:bg-slate-800">
+        <Card className="shadow-2xl border border-divider overflow-hidden rounded-2xl bg-surface">
           <div className="text-center mb-8">
             <div className="mx-auto w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mb-4">
-              <Car className="w-8 h-8 text-indigo-600 dark:text-indigo-500" />
+              <Car className="w-8 h-8 text-brand" />
             </div>
-            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Welcome back</h1>
-            <p className="text-slate-500 dark:text-slate-400 mt-2">Sign in to manage your dealership</p>
+            <h1 className="text-2xl font-bold text-primary">Welcome back</h1>
+            <p className="text-secondary mt-2">Sign in to manage your dealership</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+              <label className="block text-sm font-medium text-primary mb-1">Email</label>
               <Controller
                 name="email"
                 control={control}
@@ -67,7 +67,7 @@ const Login = () => {
                   <Input 
                     {...field} 
                     size="large" 
-                    prefix={<Mail className="w-4 h-4 text-slate-400 mr-2" />} 
+                    prefix={<Mail className="w-4 h-4 text-secondary mr-2" />} 
                     placeholder="Enter your email"
                     status={errors.email ? 'error' : ''}
                   />
@@ -77,7 +77,7 @@ const Login = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+              <label className="block text-sm font-medium text-primary mb-1">Password</label>
               <Controller
                 name="password"
                 control={control}
@@ -85,7 +85,7 @@ const Login = () => {
                   <Input.Password 
                     {...field} 
                     size="large" 
-                    prefix={<Lock className="w-4 h-4 text-slate-400 mr-2" />} 
+                    prefix={<Lock className="w-4 h-4 text-secondary mr-2" />} 
                     placeholder="Enter your password"
                     status={errors.password ? 'error' : ''}
                   />
@@ -97,15 +97,15 @@ const Login = () => {
             <Button 
               type="primary" 
               htmlType="submit" 
-              className="w-full h-12 text-base font-semibold shadow-md shadow-indigo-200"
+              className="w-full h-12 text-base font-semibold shadow-none shadow-indigo-200"
               loading={loading}
             >
               Sign In
             </Button>
 
-            <div className="text-center text-sm text-slate-500 mt-6">
+            <div className="text-center text-sm text-secondary mt-6">
               Don't have an account?{' '}
-              <Link to="/register" className="text-indigo-600 font-semibold hover:text-indigo-700">
+              <Link to="/register" className="text-brand font-semibold hover:text-indigo-700">
                 Register here
               </Link>
             </div>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Input, Button, Card } from 'antd';
+import { Input, Button, Card, Select } from 'antd';
 import { motion } from 'framer-motion';
 import { Car, Lock, Mail, User as UserIcon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,7 +14,8 @@ const registerSchema = z.object({
   lastName: z.string().min(2, 'Last name is required'),
   email: z.string().email('Invalid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
-  confirmPassword: z.string()
+  confirmPassword: z.string(),
+  role: z.enum(['CUSTOMER', 'ADMIN'])
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ["confirmPassword"],
@@ -25,6 +26,9 @@ type RegisterForm = z.infer<typeof registerSchema>;
 const Register = () => {
   const { control, handleSubmit, formState: { errors } } = useForm<RegisterForm>({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      role: 'CUSTOMER'
+    }
   });
   
   const [loading, setLoading] = useState(false);
@@ -46,26 +50,26 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 p-4 py-12 transition-colors duration-300">
+    <div className="min-h-screen flex items-center justify-center bg-canvas p-4 py-12 transition-colors duration-300">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"
       >
-        <Card className="shadow-2xl border-0 overflow-hidden rounded-2xl dark:bg-slate-800">
+        <Card className="shadow-2xl border border-divider overflow-hidden rounded-2xl bg-surface">
           <div className="text-center mb-8">
             <div className="mx-auto w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mb-4">
-              <Car className="w-8 h-8 text-indigo-600 dark:text-indigo-500" />
+              <Car className="w-8 h-8 text-brand" />
             </div>
-            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Create an Account</h1>
-            <p className="text-slate-500 dark:text-slate-400 mt-2">Join CarMatrix Dealership Platform</p>
+            <h1 className="text-2xl font-bold text-primary">Create an Account</h1>
+            <p className="text-secondary mt-2">Join CarMatrix Dealership Platform</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">First Name</label>
+                <label className="block text-sm font-medium text-primary mb-1">First Name</label>
                 <Controller
                   name="firstName"
                   control={control}
@@ -73,7 +77,7 @@ const Register = () => {
                     <Input 
                       {...field} 
                       size="large" 
-                      prefix={<UserIcon className="w-4 h-4 text-slate-400 mr-2" />} 
+                      prefix={<UserIcon className="w-4 h-4 text-secondary mr-2" />} 
                       placeholder="First Name"
                       status={errors.firstName ? 'error' : ''}
                     />
@@ -83,7 +87,7 @@ const Register = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Last Name</label>
+                <label className="block text-sm font-medium text-primary mb-1">Last Name</label>
                 <Controller
                   name="lastName"
                   control={control}
@@ -91,7 +95,7 @@ const Register = () => {
                     <Input 
                       {...field} 
                       size="large" 
-                      prefix={<UserIcon className="w-4 h-4 text-slate-400 mr-2" />} 
+                      prefix={<UserIcon className="w-4 h-4 text-secondary mr-2" />} 
                       placeholder="Last Name"
                       status={errors.lastName ? 'error' : ''}
                     />
@@ -102,7 +106,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+              <label className="block text-sm font-medium text-primary mb-1">Email</label>
               <Controller
                 name="email"
                 control={control}
@@ -110,7 +114,7 @@ const Register = () => {
                   <Input 
                     {...field} 
                     size="large" 
-                    prefix={<Mail className="w-4 h-4 text-slate-400 mr-2" />} 
+                    prefix={<Mail className="w-4 h-4 text-secondary mr-2" />} 
                     placeholder="Enter your email"
                     status={errors.email ? 'error' : ''}
                   />
@@ -120,7 +124,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+              <label className="block text-sm font-medium text-primary mb-1">Password</label>
               <Controller
                 name="password"
                 control={control}
@@ -128,7 +132,7 @@ const Register = () => {
                   <Input.Password 
                     {...field} 
                     size="large" 
-                    prefix={<Lock className="w-4 h-4 text-slate-400 mr-2" />} 
+                    prefix={<Lock className="w-4 h-4 text-secondary mr-2" />} 
                     placeholder="Create a password"
                     status={errors.password ? 'error' : ''}
                   />
@@ -138,7 +142,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Confirm Password</label>
+              <label className="block text-sm font-medium text-primary mb-1">Confirm Password</label>
               <Controller
                 name="confirmPassword"
                 control={control}
@@ -146,7 +150,7 @@ const Register = () => {
                   <Input.Password 
                     {...field} 
                     size="large" 
-                    prefix={<Lock className="w-4 h-4 text-slate-400 mr-2" />} 
+                    prefix={<Lock className="w-4 h-4 text-secondary mr-2" />} 
                     placeholder="Confirm your password"
                     status={errors.confirmPassword ? 'error' : ''}
                   />
@@ -155,18 +159,39 @@ const Register = () => {
               {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword.message}</p>}
             </div>
 
+            <div>
+              <label className="block text-sm font-medium text-primary mb-1">Account Role</label>
+              <Controller
+                name="role"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    size="large"
+                    className="w-full"
+                    placeholder="Select your role"
+                    options={[
+                      { value: 'CUSTOMER', label: 'Customer' },
+                      { value: 'ADMIN', label: 'Admin (Dealership Staff)' },
+                    ]}
+                  />
+                )}
+              />
+              {errors.role && <p className="text-red-500 text-xs mt-1">{errors.role.message}</p>}
+            </div>
+
             <Button 
               type="primary" 
               htmlType="submit" 
-              className="w-full h-12 text-base font-semibold shadow-md shadow-indigo-200 mt-2"
+              className="w-full h-12 text-base font-semibold shadow-none shadow-indigo-200 mt-2"
               loading={loading}
             >
               Register
             </Button>
 
-            <div className="text-center text-sm text-slate-500 mt-6">
+            <div className="text-center text-sm text-secondary mt-6">
               Already have an account?{' '}
-              <Link to="/login" className="text-indigo-600 font-semibold hover:text-indigo-700">
+              <Link to="/login" className="text-brand font-semibold hover:text-indigo-700">
                 Sign in
               </Link>
             </div>

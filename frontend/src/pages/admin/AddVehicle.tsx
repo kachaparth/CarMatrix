@@ -58,24 +58,24 @@ const AddVehicle = () => {
         type="text" 
         icon={<ArrowLeft size={16} />} 
         onClick={() => navigate('/admin/vehicles')}
-        className="text-slate-500 hover:text-slate-800 -ml-4"
+        className="text-secondary hover:text-primary -ml-4"
       >
         Back to Management
       </Button>
 
       <div className="flex justify-between items-center">
         <div>
-          <Title level={2} className="mb-0 text-slate-800 dark:text-slate-100">Add New Vehicle</Title>
-          <p className="text-slate-500 dark:text-slate-400">Register a new vehicle into the dealership inventory</p>
+          <Title level={2} className="mb-0 text-primary">Add New Vehicle</Title>
+          <p className="text-secondary">Register a new vehicle into the dealership inventory</p>
         </div>
       </div>
 
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-        <Card className="shadow-sm border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden dark:bg-slate-800">
+        <Card className="shadow-none border-divider rounded-2xl overflow-hidden bg-surface">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <Row gutter={[24, 24]}>
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Make <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-primary mb-1">Make <span className="text-red-500">*</span></label>
                 <Controller
                   name="make"
                   control={control}
@@ -87,7 +87,7 @@ const AddVehicle = () => {
               </Col>
               
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Model <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-primary mb-1">Model <span className="text-red-500">*</span></label>
                 <Controller
                   name="model"
                   control={control}
@@ -99,7 +99,7 @@ const AddVehicle = () => {
               </Col>
 
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Category <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-primary mb-1">Category <span className="text-red-500">*</span></label>
                 <Controller
                   name="category"
                   control={control}
@@ -115,7 +115,7 @@ const AddVehicle = () => {
               </Col>
 
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Price (₹) <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-primary mb-1">Price (₹) <span className="text-red-500">*</span></label>
                 <Controller
                   name="price"
                   control={control}
@@ -127,7 +127,7 @@ const AddVehicle = () => {
               </Col>
 
               <Col xs={24} md={8}>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Year <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-primary mb-1">Year <span className="text-red-500">*</span></label>
                 <Controller
                   name="manufacturingYear"
                   control={control}
@@ -139,7 +139,7 @@ const AddVehicle = () => {
               </Col>
 
               <Col xs={24} md={8}>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Fuel Type <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-primary mb-1">Fuel Type <span className="text-red-500">*</span></label>
                 <Controller
                   name="fuelType"
                   control={control}
@@ -155,7 +155,7 @@ const AddVehicle = () => {
               </Col>
 
               <Col xs={24} md={8}>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Transmission <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-primary mb-1">Transmission <span className="text-red-500">*</span></label>
                 <Controller
                   name="transmissionType"
                   control={control}
@@ -170,7 +170,7 @@ const AddVehicle = () => {
               </Col>
 
               <Col xs={24} md={12}>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Color <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-medium text-primary mb-1">Color <span className="text-red-500">*</span></label>
                 <Controller
                   name="color"
                   control={control}
@@ -182,7 +182,7 @@ const AddVehicle = () => {
               </Col>
 
               <Col xs={24}>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
+                <label className="block text-sm font-medium text-primary mb-1">Description</label>
                 <Controller
                   name="description"
                   control={control}
@@ -193,9 +193,9 @@ const AddVehicle = () => {
               </Col>
             </Row>
 
-            <div className="flex justify-end gap-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+            <div className="flex justify-end gap-4 pt-4 border-t border-divider">
               <Button size="large" onClick={() => navigate('/admin/vehicles')}>Cancel</Button>
-              <Button type="primary" htmlType="submit" size="large" loading={loading} icon={<Save size={18} />} className="bg-indigo-600 hover:bg-indigo-700 shadow-md">
+              <Button type="primary" htmlType="submit" size="large" loading={loading} icon={<Save size={18} />} className="bg-brand hover:opacity-90 text-white shadow-none">
                 Save Vehicle
               </Button>
             </div>

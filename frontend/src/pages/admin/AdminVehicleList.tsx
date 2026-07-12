@@ -57,7 +57,7 @@ const AdminVehicleList = () => {
       title: 'Make & Model',
       key: 'makeModel',
       render: (_: any, record: Vehicle) => (
-        <div className="font-semibold text-slate-800">
+        <div className="font-semibold text-primary">
           {record.make} {record.model}
         </div>
       ),
@@ -92,7 +92,7 @@ const AdminVehicleList = () => {
         <Space size="middle">
           <Button 
             type="text" 
-            className="text-slate-500 hover:text-indigo-600" 
+            className="text-secondary hover:text-brand" 
             icon={<PackagePlus size={16} />}
             onClick={() => {
               setSelectedVehicle(record);
@@ -104,7 +104,7 @@ const AdminVehicleList = () => {
           </Button>
           <Button 
             type="text" 
-            className="text-slate-500 hover:text-blue-600" 
+            className="text-secondary hover:text-blue-600" 
             icon={<Edit size={16} />}
             onClick={() => navigate(`/admin/vehicles/edit/${record.id}`)}
           >
@@ -127,23 +127,23 @@ const AdminVehicleList = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface p-6 rounded-2xl shadow-none border border-divider">
         <div>
-          <Title level={3} className="mb-0 text-slate-800 dark:text-slate-100">Vehicle Management</Title>
-          <p className="text-slate-500 dark:text-slate-400 mb-0">Manage dealership inventory and stock</p>
+          <Title level={3} className="mb-0 text-primary">Vehicle Management</Title>
+          <p className="text-secondary mb-0">Manage dealership inventory and stock</p>
         </div>
         <Link to="/admin/vehicles/add">
-          <Button type="primary" size="large" icon={<Plus size={18} />} className="bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-200">
+          <Button type="primary" size="large" icon={<Plus size={18} />} className="bg-brand hover:opacity-90 text-white shadow-none shadow-indigo-200">
             Add New Vehicle
           </Button>
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+      <div className="bg-surface p-6 rounded-2xl shadow-none border border-divider">
         <div className="mb-6 max-w-md">
           <Input 
             placeholder="Search by make or model..." 
-            prefix={<Search className="text-slate-400 w-4 h-4" />}
+            prefix={<Search className="text-secondary w-4 h-4" />}
             size="large"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -156,7 +156,7 @@ const AdminVehicleList = () => {
           rowKey="id" 
           loading={isLoading}
           pagination={{ pageSize: 10 }}
-          className="border border-slate-100 dark:border-slate-700 rounded-lg overflow-hidden"
+          className="border border-divider rounded-lg overflow-hidden"
         />
       </div>
 
@@ -166,15 +166,15 @@ const AdminVehicleList = () => {
         onOk={handleRestock}
         onCancel={() => setRestockModalVisible(false)}
         confirmLoading={restockMutation.isPending}
-        okButtonProps={{ className: 'bg-indigo-600 hover:bg-indigo-700' }}
+        okButtonProps={{ className: 'bg-brand hover:opacity-90 text-white' }}
         centered
       >
         <div className="py-4">
-          <p className="mb-4 text-slate-600 dark:text-slate-300">
-            How many units of <strong className="text-slate-800 dark:text-slate-100">{selectedVehicle?.make} {selectedVehicle?.model}</strong> do you want to add to inventory?
+          <p className="mb-4 text-secondary">
+            How many units of <strong className="text-primary">{selectedVehicle?.make} {selectedVehicle?.model}</strong> do you want to add to inventory?
           </p>
           <div className="flex items-center gap-4">
-            <span className="font-medium text-slate-700 dark:text-slate-300">Quantity:</span>
+            <span className="font-medium text-primary">Quantity:</span>
             <InputNumber 
               min={1} 
               max={100} 
