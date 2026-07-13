@@ -67,6 +67,17 @@ public class VehicleController {
         );
     }
 
+    @PostMapping("/bulk")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Bulk Add Vehicles")
+    public ResponseEntity<List<VehicleResponse>> addVehicles(
+            @Valid @RequestBody List<CreateVehicleRequest> requests) {
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(vehicleService.addVehicles(requests));
+    }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteVehicle(

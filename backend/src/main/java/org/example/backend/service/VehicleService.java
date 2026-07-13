@@ -1,5 +1,6 @@
 package org.example.backend.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.backend.dto.vehicle.CreateVehicleRequest;
 import org.example.backend.dto.vehicle.UpdateVehicleRequest;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,6 +54,48 @@ public class VehicleService {
         inventory = inventoryRepository.save(inventory);
 
         return vehicleMapper.toResponse(savedVehicle, inventory);
+    }
+
+    @Transactional
+    public List<VehicleResponse> addVehicles(
+            List<CreateVehicleRequest> requests
+    ) {
+
+        List<VehicleResponse> responses = new ArrayList<>();
+
+        for (CreateVehicleRequest request : requests) {
+
+            vehicleRepository.findByMakeAndModelAndManufacturingYear(
+                    request.getMake(),
+                    request.getModel(),
+                    request.getManufacturingYear()
+            ).ifPresent(vehicle -> {
+                throw new ApiException(
+                        HttpStatus.CONFLICT,
+                        "Vehicle already exists: "
+                                + request.getMake() + " "
+                                + request.getModel()
+                );
+            });
+
+            Vehicle vehicle = vehicleMapper.toEntity(request);
+
+            Vehicle savedVehicle = vehicleRepository.save(vehicle);
+
+            Inventory inventory = Inventory.builder()
+                    .vehicle(savedVehicle)
+                    .quantity(0)
+                    .minimumStock(5)
+                    .build();
+
+            inventory = inventoryRepository.save(inventory);
+
+            responses.add(
+                    vehicleMapper.toResponse(savedVehicle, inventory)
+            );
+        }
+
+        return responses;
     }
 
     public VehicleResponse getVehicle(Long id) {
