@@ -39,7 +39,6 @@ public class InventoryController {
 
     @Operation(summary = "Purchase Vehicle")
     @PostMapping("/{id}/purchase")
-    @PreAuthorize("hasRole('CUSTOMER')")
     public ResponseEntity<InventoryResponse> purchase(
 
             @PathVariable Long id,
